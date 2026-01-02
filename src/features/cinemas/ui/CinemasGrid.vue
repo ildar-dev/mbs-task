@@ -10,7 +10,7 @@
       <div class="truncate">{{ c.name }}</div>
       <div class="truncate">{{ c.address }}</div>
       <div>
-        <RouterLink class="underline" :to="`/cinemas/${c.id}`">Посмотреть сеансы</RouterLink>
+        <RouterLink class="underline" :to="`/cinema/${c.id}`">Посмотреть сеансы</RouterLink>
       </div>
     </div>
   </div>

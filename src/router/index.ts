@@ -9,6 +9,9 @@ const routes: RouteRecordRaw[] = [
   { path: '/tickets', name: 'tickets', component: () => import('../views/Tickets.vue') },
   { path: '/login', name: 'login', component: () => import('../views/Login.vue') },
   { path: '/register', name: 'register', component: () => import('../views/Register.vue') },
+  { path: '/movie/:id', name: 'movie', component: () => import('../views/Movie.vue') },
+  { path: '/cinema/:id', name: 'cinema', component: () => import('../views/Cinema.vue') },
+  { path: '/session/:id', name: 'session', component: () => import('../views/Session.vue') },
 ]
 
 export const router = createRouter({

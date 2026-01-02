@@ -16,7 +16,7 @@
       <div>{{ formatTime(m.lengthInMs) }}</div>
       <div>{{ m.rating }}</div>
       <div>
-        <RouterLink class="underline" :to="`/movies/${m.id}`">Посмотреть сеансы</RouterLink>
+        <RouterLink class="underline" :to="`/movie/${m.id}`">Посмотреть сеансы</RouterLink>
       </div>
     </div>
   </div>
