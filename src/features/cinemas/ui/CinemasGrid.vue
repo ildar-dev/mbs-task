@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ICinema } from '@/features/cinemas/models/cinema'
+import type { ICinema } from '@/entities/cinema/models/cinema'
 
 const props = defineProps<{
   cinemas: ICinema[]

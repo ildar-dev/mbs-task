@@ -4,6 +4,6 @@ export interface IMovie {
   year: number;
   rating: number;
   posterUrl: string;
-  lengthFormatted: string;
+  lengthInMs: number;
   description: string;
 }

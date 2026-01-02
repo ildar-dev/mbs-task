@@ -6,7 +6,7 @@
 import MoviesGrid from './MoviesGrid.vue'
 
 import { ref, onMounted } from 'vue'
-import type { IMovie } from '../models/movie'
+import type { IMovie } from '@/entities/movie/models/movie'
 import { getMovies } from '../business/getMovies'
 
 const movies = ref<IMovie[]>([])
