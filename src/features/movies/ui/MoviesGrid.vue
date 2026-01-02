@@ -1,5 +1,5 @@
 <template>
-  <div class="p-6">
+  <div>
     <div class="grid grid-cols-5 gap-4 border-b border-white pb-3 mb-4">
       <div></div>
       <div class="font-semibold">Название</div>

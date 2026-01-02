@@ -1,5 +1,5 @@
 <template>
-  <MoviesGrid :movies="movies" />
+  <MoviesGrid :movies="movies"/>
 </template>
 
 <script setup lang="ts">
