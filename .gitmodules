@@ -1,0 +1,3 @@
+[submodule "cinema-backend-api"]
+	path = cinema-backend-api
+	url = https://github.com/maxbit-solution/frontend_technical_task
