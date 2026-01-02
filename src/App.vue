@@ -7,7 +7,8 @@
     <div class="flex bg-black text-white border border-[3px] border-white">
       <aside class="max-h-[300px] w-64 border-r border-b border-white p-6">
         <nav class="flex flex-col gap-3">
-          <RouterLink v-for="page in pages.filter(page => page.isOnMenu)" :key="page.path" class="hover:underline" :to="page.path">{{ page.title }}</RouterLink>
+          <RouterLink v-for="page in visiblePages" :key="page.path" class="hover:underline" :to="page.path">{{ page.title }}</RouterLink>
+          <button v-if="isAuthenticated" class="text-left hover:underline" @click="onLogout">Выход</button>
         </nav>
       </aside>
       <main class="min-h-[800px] flex-1 p-6">
@@ -18,7 +19,8 @@
 </template>
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { useAuth } from '@/features/auth/composables/useAuth'
 
 const pages = [
   { title: 'Фильмы', path: '/movies', header: 'Фильмы / Главная', isOnMenu: true },
@@ -30,6 +32,16 @@ const pages = [
 
 const route = useRoute()
 const title = computed(() => pages.find(page => page.path === route.path)?.header ?? '')
+
+const { isAuthenticated, logout } = useAuth()
+const visiblePages = computed(() =>
+  pages.filter(p => p.isOnMenu && (!isAuthenticated.value || p.path !== '/login'))
+)
+const router = useRouter()
+function onLogout() {
+  logout()
+  router.push('/movies')
+}
 </script>
 
 <style scoped>
