@@ -1,18 +1,36 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <header class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-    <h1 class="text-xl font-bold">mbs-test</h1>
-    <nav class="flex gap-4">
-      <RouterLink class="text-blue-600 dark:text-blue-400 hover:underline" to="/">Главная</RouterLink>
-      <RouterLink class="text-blue-600 dark:text-blue-400 hover:underline" to="/about">О проекте</RouterLink>
-    </nav>
-  </header>
-  <main class="p-6">
-    <RouterView />
-  </main>
+
+  <div class="max-w-[1200px] mx-auto mt-[100px]">
+    <header>
+      <h1 class="text-4xl mb-6">{{ title }}</h1>
+    </header>
+    <div class="flex bg-black text-white border border-[3px] border-white">
+      <aside class="max-h-[300px] w-64 border-r border-b border-white p-6">
+        <nav class="flex flex-col gap-3">
+          <RouterLink v-for="page in pages.filter(page => page.isOnMenu)" :key="page.path" class="hover:underline" :to="page.path">{{ page.title }}</RouterLink>
+        </nav>
+      </aside>
+      <main class="min-h-[800px] flex-1 p-6">
+        <RouterView />
+      </main>
+    </div>
+  </div>
 </template>
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+const pages = [
+  { title: 'Фильмы', path: '/movies', header: 'Фильмы / Главная', isOnMenu: true },
+  { title: 'Кинотеатры', path: '/cinemas', header: 'Кинотеатры', isOnMenu: true },
+  { title: 'Мои билеты', path: '/tickets', header: 'Мои билеты', isOnMenu: true },
+  { title: 'Вход', path: '/login', header: 'Вход', isOnMenu: true },
+  { title: 'Регистрация', path: '/register', header: 'Регистрация', isOnMenu: false },
+]
+
+const route = useRoute()
+const title = computed(() => pages.find(page => page.path === route.path)?.header ?? '')
+</script>
 
 <style scoped>
 /* Базовая типографика */
