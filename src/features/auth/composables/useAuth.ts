@@ -1,6 +1,6 @@
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '../model/store'
-import { login as apiLogin, register as apiRegister } from '@/api'
+import { login as apiLogin, register as apiRegister } from '@/shared/api'
 
 export function useAuth() {
   const store = useAuthStore()
