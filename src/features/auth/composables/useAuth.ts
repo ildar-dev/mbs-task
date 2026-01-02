@@ -1,5 +1,5 @@
 import { storeToRefs } from 'pinia'
-import { useAuthStore } from '../model/store'
+import { useAuthStore } from '../models/store'
 import { login as apiLogin } from '@/shared/api/auth/login'
 import { register as apiRegister } from '@/shared/api/auth/register'
 

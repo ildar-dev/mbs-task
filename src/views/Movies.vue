@@ -1,5 +1,7 @@
 <template>
-  <div class="p-6"></div>
+  <MoviesFeature />
 </template>
 
-
+<script setup lang="ts">
+import MoviesFeature from '@/features/movies/ui/index.vue'
+</script>

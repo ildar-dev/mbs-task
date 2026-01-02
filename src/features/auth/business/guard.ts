@@ -1,5 +1,5 @@
 import type { NavigationGuard } from 'vue-router'
-import { useAuthStore } from '../model/store'
+import { useAuthStore } from '../models/store'
 
 export const authGuard: NavigationGuard = (to) => {
   if (to.path === '/tickets') {

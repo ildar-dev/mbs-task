@@ -1,8 +1,10 @@
 import axios from 'axios'
-import { useAuthStore } from '@/features/auth/model/store'
+import { useAuthStore } from '@/features/auth/models/store'
+
+export const BASE_URL = import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:3022';
 
 export const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:3022',
+  baseURL: BASE_URL,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
