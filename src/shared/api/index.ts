@@ -1,2 +1,3 @@
 export { apiClient } from './client'
-export { login, register, type AuthRequest, type AuthResponse } from './auth'
+export { login, register } from './auth'
+export type { IDtoAuthRequest, IDtoAuthResponse } from './auth/models'

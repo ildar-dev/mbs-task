@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import { authGuard } from '@/features/auth/lib/guard'
+import { createRouter, createWebHistory } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
+import { authGuard } from '@/features/auth/business/guard'
 
 const routes: RouteRecordRaw[] = [
   { path: '/', redirect: '/movies' },

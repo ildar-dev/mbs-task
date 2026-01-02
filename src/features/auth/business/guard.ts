@@ -1,7 +1,7 @@
-import type { NavigationGuardWithThis } from 'vue-router'
+import type { NavigationGuard } from 'vue-router'
 import { useAuthStore } from '../model/store'
 
-export const authGuard: NavigationGuardWithThis<unknown> = (to) => {
+export const authGuard: NavigationGuard = (to) => {
   if (to.path === '/tickets') {
     const store = useAuthStore()
     if (!store.isAuthenticated) return { path: '/login' }

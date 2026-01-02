@@ -11,6 +11,9 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
     parser: '@typescript-eslint/parser',
+    extraFileExtensions: ['.vue'],
+    project: ['./tsconfig.eslint.json'],
+    tsconfigRootDir: __dirname,
   },
   plugins: ['@typescript-eslint', 'vue'],
   extends: [
@@ -18,6 +21,16 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
+  ],
+  overrides: [
+    {
+      files: ['*.vue'],
+      parser: 'vue-eslint-parser',
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+        project: null,
+      },
+    },
   ],
   rules: {
     'vue/multi-word-component-names': 'off',

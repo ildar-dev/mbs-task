@@ -30,8 +30,8 @@
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuth } from '@/features/auth/composables/useAuth'
-import { onLoginSuccess } from '@/features/auth/lib/onLoginSuccess'
-import { isValidUsername, isValidPassword, isPasswordConfirmed } from '@/features/auth/lib/validation'
+import { onLoginSuccess } from '@/features/auth/business/onLoginSuccess'
+import { isValidUsername, isValidPassword, isPasswordConfirmed } from '@/features/auth/business/validation'
 
 const username = ref('')
 const password = ref('')

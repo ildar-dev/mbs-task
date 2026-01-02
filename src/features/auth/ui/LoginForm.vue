@@ -21,16 +21,14 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { useAuth } from '@/features/auth/composables/useAuth'
-import { onLoginSuccess } from '@/features/auth/lib/onLoginSuccess'
+import { onLoginSuccess } from '@/features/auth/business/onLoginSuccess'
 
 const username = ref('')
 const password = ref('')
 const error = ref('')
 const submitting = ref(false)
 
-const router = useRouter()
 const { login } = useAuth()
 
 async function onSubmit() {

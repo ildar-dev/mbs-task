@@ -1,6 +1,6 @@
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '../model/store'
-import { login as apiLogin, register as apiRegister } from '@/shared/api'
+import { login as apiLogin, register as apiRegister } from '@/shared/api/auth'
 
 export function useAuth() {
   const store = useAuthStore()
@@ -8,16 +8,16 @@ export function useAuth() {
 
   async function login(username: string, password: string): Promise<void> {
     const { token } = await apiLogin({ username, password })
-    store.setToken(token)
+    store.token = token
   }
 
   async function register(username: string, password: string): Promise<void> {
     const { token } = await apiRegister({ username, password })
-    store.setToken(token)
+    store.token = token
   }
 
   function logout(): void {
-    store.logout()
+    store.token = null
   }
 
   return { isAuthenticated, login, register, logout }
