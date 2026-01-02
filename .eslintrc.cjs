@@ -6,11 +6,11 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  parser: '@typescript-eslint/parser',
+  parser: 'vue-eslint-parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    extraFileExtensions: ['.vue'],
+    parser: '@typescript-eslint/parser',
   },
   plugins: ['@typescript-eslint', 'vue'],
   extends: [
