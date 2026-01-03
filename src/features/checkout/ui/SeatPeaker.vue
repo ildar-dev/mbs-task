@@ -26,21 +26,6 @@
         {{ cell.seat }}
       </button>
     </div>
-
-    <div class="flex gap-4 text-sm text-gray-600">
-      <div class="flex items-center gap-2">
-        <span class="inline-block h-4 w-4 rounded bg-gray-300"></span>
-        <span>Свободно</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="inline-block h-4 w-4 rounded bg-blue-600"></span>
-        <span>Выбрано</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="inline-block h-4 w-4 rounded bg-red-500"></span>
-        <span>Забронировано</span>
-      </div>
-    </div>
   </div>
 </template>
 
