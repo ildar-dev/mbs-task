@@ -1,13 +1,8 @@
 import type { ITheater } from '@/entities/theater/models/theater'
 import type { ISeat } from '@/entities/theater/models/seat'
-import type { IMovie } from '@/entities/movie/models/movie'
-import type { ICinema } from '@/entities/cinema/models/cinema'
+import type { ISession } from './session'
 
-export interface ISessionDetails {
-  id: number;
-  movieId: IMovie['id'];
-  cinemaId: ICinema['id'];
-  startTime: Date;
+export interface ISessionDetails extends ISession {
   theater: ITheater;
   bookedSeats: ISeat[];
 }
