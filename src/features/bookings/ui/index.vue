@@ -20,6 +20,8 @@ import type { IBooking } from '@/entities/booking/models/booking'
 import type { ISessionPage } from '@/features/session/models/sessionPage'
 import { getGroupedBookings } from '@/features/bookings/business/getGroupedBookings'
 import { getSessionPageById } from '@/features/session/business/getSessionPageById'
+import { paymentBooking } from '@/features/bookings/business/payment'
+import type { IPaymentDetails } from '@/features/bookings/models/payment'
 
 const isLoading = ref(false)
 const error = ref<unknown>(null)
@@ -50,8 +52,13 @@ async function load() {
 onMounted(load)
 
 function onPay(bookingId: string) {
-  // TODO: вызвать оплату/переход на checkout
-  console.log('pay booking', bookingId)
+  paymentBooking(bookingId)
+    .then((paymentDetails: IPaymentDetails) => {
+      console.log(paymentDetails)
+    })
+    .catch((error: unknown) => {
+      console.error(error)
+    })
 }
 </script>
 

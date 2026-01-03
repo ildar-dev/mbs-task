@@ -19,10 +19,7 @@ import type { IGroupedBookings } from '../models/groupedBookings'
 import { computed } from 'vue'
 
 const props = defineProps<{
-  groups: Array<{
-    type: IGroupedBookings['type']
-    bookings: IBooking[]
-  }>
+  groups: IGroupedBookings[]
   sessionsById: Record<number, ISessionPage>
 }>()
 
@@ -31,7 +28,7 @@ defineEmits<{
 }>()
 
 const groups = computed(() =>
-  props.groups.map((g: { type: IGroupedBookings['type']; bookings: IBooking[] }) => ({
+  props.groups.filter((g: IGroupedBookings) => g.bookings.length > 0).map((g: IGroupedBookings) => ({
     type: g.type,
     items: g.bookings
       .map((b: IBooking) =>
@@ -41,6 +38,3 @@ const groups = computed(() =>
   }))
 )
 </script>
-
-<style scoped>
-</style>
