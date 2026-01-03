@@ -27,9 +27,7 @@ export function groupedSortedSessionsByDateCinema(
   sessions: ISession[],
   cinemasById: TCinemaDictionary,
 ): TSessionsMatrixByDateCinema {
-  // сортируем сессии по времени, затем группируем
-  const sorted = [...sessions].sort((a, b) => a.startTime.getTime() - b.startTime.getTime())
-  const raw = groupedSessionsByDateCinema(sorted)
+  const raw = groupedSessionsByDateCinema(sessions)
   // сортируем дни и внутренние ключи по названию кинотеатров (fallback по id)
   const result: TSessionsMatrixByDateCinema = {}
   const dayKeys = Object.keys(raw).map(Number).sort((a, b) => a - b)
@@ -47,9 +45,7 @@ export function groupedSortedSessionsByDateMovie(
   sessions: ISession[],
   moviesById: TMovieDictionary,
 ): TSessionsMatrixByDateMovie {
-  // сортируем сессии по времени, затем группируем
-  const sorted = [...sessions].sort((a, b) => a.startTime.getTime() - b.startTime.getTime())
-  const raw = groupedSessionsByDateMovie(sorted)
+  const raw = groupedSessionsByDateMovie(sessions)
   // сортируем дни и внутренние ключи по названию фильмов (fallback по id)
   const result: TSessionsMatrixByDateMovie = {}
   const dayKeys = Object.keys(raw).map(Number).sort((a, b) => a - b)
