@@ -8,7 +8,7 @@
       <div class="col-span-2 space-y-3">
         <p class="opacity-90">{{ movie.description }}</p>
         <div>Год: {{ movie.year }}</div>
-        <div>Длительность: {{ formatTime(movie.lengthInMs) }}</div>
+        <div>Длительность: {{ formatTimeHHMM(movie.lengthInMs) }}</div>
         <div>Рейтинг: {{ movie.rating }}</div>
       </div>
     </div>
@@ -17,6 +17,6 @@
 
 <script setup lang="ts">
 import type { IMovie } from '@/entities/movie/models/movie'
-import { formatTime } from '@/utils/timeConverter'
+import { formatTimeHHMM } from '@/utils/timeConverter'
 const props = defineProps<{ movie: IMovie }>()
 </script>

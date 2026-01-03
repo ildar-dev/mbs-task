@@ -13,7 +13,7 @@
         <img v-if="m.posterUrl" :src="m.posterUrl" alt="" class="w-16 h-24 object-cover" />
       </div>
       <div class="truncate">{{ m.title }}</div>
-      <div>{{ formatTime(m.lengthInMs) }}</div>
+      <div>{{ formatTimeHHMM(m.lengthInMs) }}</div>
       <div>{{ m.rating }}</div>
       <div>
         <RouterLink class="underline" :to="`/movie/${m.id}`">Посмотреть сеансы</RouterLink>
@@ -24,6 +24,6 @@
 
 <script setup lang="ts">
 import type { IMovie } from '@/entities/movie/models/movie'
-import { formatTime } from '@/utils/timeConverter'
+import { formatTimeHHMM } from '@/utils/timeConverter'
 const props = defineProps<{ movies: IMovie[] }>()
 </script>

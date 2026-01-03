@@ -1,7 +1,7 @@
 import { getCinemas } from '@/shared/api/cinemas/getCinemas'
 import { getSessionsByMovie } from '@/shared/api/sessions/sessionsByMovie'
 import { mapDtoToSession } from '@/entities/session/mappers/fromDto'
-import { groupedSessionsByDateCinema } from './getGroupedSessions'
+import { groupedSortedSessionsByDateCinema } from './getGroupedSortedSessions'
 import type { TCinemaDictionary } from '../models/cinemaDictionary'
 import type { TSessionsMatrixByDateCinema } from '../models/sessionsMatrixByDateCinema'
 
@@ -15,7 +15,7 @@ export async function getCalendarByCinemasForMovie(movieId: number): Promise<{
   ])
   const cinemasById = Object.fromEntries(cinemas.map(c => [c.id, c])) as TCinemaDictionary
   const sessions = sessionsDto.map(mapDtoToSession)
-  const matrix = groupedSessionsByDateCinema(sessions)
+  const matrix = groupedSortedSessionsByDateCinema(sessions, cinemasById)
   return { cinemasById, matrix }
 }
 
