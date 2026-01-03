@@ -13,7 +13,7 @@
           :cinema="page.cinema"
         />
         <div class="h-px bg-gray-200 my-2"></div>
-        <BookingForm
+        <CheckoutForm
           :session-id="sessionId"
           :theater="page.session.theater"
           :booked-seats="page.session.bookedSeats"
@@ -28,7 +28,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import SessionDetails from '@/features/session/ui/SessionDetails.vue'
-import BookingForm from '@/features/booking/ui/Form.vue'
+import CheckoutForm from '@/features/checkout/ui/Form.vue'
 import { getSessionPageById } from '@/features/session/business/getSessionPageById'
 import type { ISessionPage } from '@/features/session/models/sessionPage'
 

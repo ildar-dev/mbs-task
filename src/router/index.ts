@@ -6,7 +6,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/', redirect: '/movies' },
   { path: '/movies', name: 'movies', component: () => import('../pages/Movies.vue') },
   { path: '/cinemas', name: 'cinemas', component: () => import('../pages/Cinemas.vue') },
-  { path: '/tickets', name: 'tickets', component: () => import('../pages/Tickets.vue') },
+  { path: '/bookings', name: 'bookings', component: () => import('../pages/Bookings.vue') },
   { path: '/login', name: 'login', component: () => import('../pages/Login.vue') },
   { path: '/register', name: 'register', component: () => import('../pages/Register.vue') },
   { path: '/movie/:id', name: 'movie', component: () => import('../pages/Movie.vue') },
