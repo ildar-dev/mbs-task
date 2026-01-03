@@ -1,8 +1,6 @@
 import type { ISession } from '@/entities/session/models/session'
 import type { TSessionsMatrixByDateCinema } from '../models/sessionsMatrixByDateCinema'
 import type { TSessionsMatrixByDateMovie } from '../models/sessionsMatrixByDateMovie'
-// ВНИМАНИЕ: здесь только группировка, без сортировки.
-// Сортирующие варианты находятся в getGroupedSortedSessions.ts
 
 export function startOfDayTs(date: Date): number {
   const d = new Date(date)

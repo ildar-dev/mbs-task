@@ -25,6 +25,6 @@ async function load(id: number) {
 }
 
 onMounted(() => load(props.movieId))
-watch(toRef(props, 'movieId'), (id) => { if (id) load(id) })
+watch(toRef(props, 'movieId'), (id: number) => { if (id) load(id) })
 </script>
 
