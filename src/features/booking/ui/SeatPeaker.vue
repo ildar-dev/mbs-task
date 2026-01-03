@@ -13,7 +13,7 @@
         :key="cell.key"
         type="button"
         role="gridcell"
-        :aria-label="`Ряд ${cell.rowDisplay}, Место ${cell.seatDisplay}`"
+        :aria-label="`Ряд ${cell.row}, Место ${cell.seat}`"
         :disabled="cell.booked"
         @click="onToggle(cell.row, cell.seat)"
         class="flex items-center justify-center select-none rounded text-xs sm:text-sm font-medium h-8 w-8 sm:h-10 sm:w-10 transition-colors"
@@ -23,7 +23,7 @@
           'bg-gray-200 hover:bg-gray-300': !cell.booked && !isSelected(cell.row, cell.seat),
         }"
       >
-        {{ cell.seatDisplay }}
+        {{ cell.seat }}
       </button>
     </div>
 
@@ -77,21 +77,17 @@ const cells = computed(() => {
     key: string
     row: number
     seat: number
-    rowDisplay: number
-    seatDisplay: number
     booked: boolean
   }> = []
   const rows = props.theater.size.rows
   const seatsPerRow = props.theater.size.seatsPerRow
-  for (let r = 0; r < rows; r++) {
-    for (let s = 0; s < seatsPerRow; s++) {
+  for (let r = 1; r <= rows; r++) {
+    for (let s = 1; s <= seatsPerRow; s++) {
       const key = toKey(r, s)
       list.push({
         key,
         row: r,
         seat: s,
-        rowDisplay: r + 1,
-        seatDisplay: s + 1,
         booked: bookedKeys.value.has(key),
       })
     }
