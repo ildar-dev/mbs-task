@@ -22,13 +22,13 @@ import { getGroupedBookings } from '../business/getGroupedBookings'
 import { usePaymentBooking } from '../composables/usePaymentBooking'
 import { EPaymentStatus } from '../models/payment'
 
-import { getSessionPageById } from '@/features/session/business/getSessionPageById'
-import type { ISessionPage } from '@/features/session/models/sessionPage'
+import { getSessionAggregateById } from '@/entities/session/repository/getSessionAggregate'
+import type { ISessionAggregate } from '@/entities/session/models/sessionAggregate'
 
 const isLoading = ref(false)
 const error = ref<unknown>(null)
 const bookings = ref<IBooking[]>([])
-const sessionsById = ref<Record<number, ISessionPage>>({})
+const sessionsById = ref<Record<number, ISessionAggregate>>({})
 
 const groups = ref(getGroupedBookings([]))
 const { pay } = usePaymentBooking()
@@ -42,7 +42,7 @@ async function load() {
 
     // Подтянем данные сессий разом
     const uniqueSessionIds: number[] = Array.from(new Set<number>(bookings.value.map((b: IBooking) => b.sessionId)))
-    const pages = await Promise.all(uniqueSessionIds.map((id: number) => getSessionPageById(id)))
+    const pages = await Promise.all(uniqueSessionIds.map((id: number) => getSessionAggregateById(id)))
     sessionsById.value = Object.fromEntries(pages.map(p => [p.session.id, p]))
   } catch (e) {
     error.value = e

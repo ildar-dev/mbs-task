@@ -38,13 +38,13 @@
 
 <script setup lang="ts">
 import type { IBooking } from '@/entities/booking/models/booking'
-import type { ISessionPage } from '@/features/session/models/sessionPage'
+import type { ISessionAggregate } from '@/entities/session/models/sessionAggregate'
 import { computed } from 'vue'
 import { formatDateMMDD, formatTimeHHMM } from '@/utils/timeConverter'
 
 const props = defineProps<{
   booking: IBooking
-  sessionPage: ISessionPage
+  sessionPage: ISessionAggregate
 }>()
 
 defineEmits<{

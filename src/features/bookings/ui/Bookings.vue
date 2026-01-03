@@ -15,11 +15,11 @@
 <script setup lang="ts">
 import Booking from './Booking.vue'
 import type { IBooking } from '@/entities/booking/models/booking'
-import type { ISessionPage } from '@/features/session/models/sessionPage'
+import type { ISessionAggregate } from '@/entities/session/models/sessionAggregate'
 
 const props = defineProps<{
   title?: string
-  items: Array<{ booking: IBooking; sessionPage: ISessionPage }>
+  items: Array<{ booking: IBooking; sessionPage: ISessionAggregate }>
 }>()
 
 defineEmits<{

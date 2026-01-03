@@ -29,21 +29,21 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import SessionDetails from '@/features/session/ui/SessionDetails.vue'
 import CheckoutForm from '@/features/checkout/ui/Form.vue'
-import { getSessionPageById } from '@/features/session/business/getSessionPageById'
-import type { ISessionPage } from '@/features/session/models/sessionPage'
+import { getSessionAggregateById } from '@/entities/session/repository/getSessionAggregate'
+import type { ISessionAggregate } from '@/entities/session/models/sessionAggregate'
 
 const route = useRoute()
 const sessionId = Number(route.params.id)
 
 const isLoading = ref(false)
 const error = ref<unknown>(null)
-const page = ref<ISessionPage | null>(null)
+const page = ref<ISessionAggregate | null>(null)
 
 async function load() {
   try {
     isLoading.value = true
     error.value = null
-    page.value = await getSessionPageById(sessionId)
+    page.value = await getSessionAggregateById(sessionId)
   } catch (e) {
     error.value = e
   } finally {

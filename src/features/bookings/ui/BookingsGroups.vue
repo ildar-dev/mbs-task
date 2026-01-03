@@ -14,13 +14,13 @@
 import Bookings from './Bookings.vue'
 import { getGroupTitle } from './groupTitles'
 import type { IBooking } from '@/entities/booking/models/booking'
-import type { ISessionPage } from '@/features/session/models/sessionPage'
+import type { ISessionAggregate } from '@/entities/session/models/sessionAggregate'
 import type { IGroupedBookings } from '../models/groupedBookings'
 import { computed } from 'vue'
 
 const props = defineProps<{
   groups: IGroupedBookings[]
-  sessionsById: Record<number, ISessionPage>
+  sessionsById: Record<number, ISessionAggregate>
 }>()
 
 defineEmits<{
@@ -34,7 +34,7 @@ const groups = computed(() =>
       .map((b: IBooking) =>
         props.sessionsById[b.sessionId] ? { booking: b, sessionPage: props.sessionsById[b.sessionId] } : null
       )
-      .filter((v: { booking: IBooking; sessionPage: ISessionPage } | null): v is { booking: IBooking; sessionPage: ISessionPage } => v !== null),
+      .filter(v => v !== null),
   }))
 )
 </script>

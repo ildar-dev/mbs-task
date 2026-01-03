@@ -6,4 +6,3 @@ export async function getBookingList(): Promise<IBooking[]> {
   const dtoList = await apiGetBookingsList()
   return dtoList.map(mapBooking)
 }
-
