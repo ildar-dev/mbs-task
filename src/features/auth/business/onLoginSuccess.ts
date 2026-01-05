@@ -1,7 +1,6 @@
-import { useRedirectBack } from '@/shared/router/useRedirectBack'
-
-const { redirectBack } = useRedirectBack()
+import { router } from '@/router'
+import { redirectBack } from '@/shared/router/redirect'
 
 export function onLoginSuccess() {
-  redirectBack()
+  redirectBack(router)
 }

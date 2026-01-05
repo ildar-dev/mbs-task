@@ -26,14 +26,14 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import SessionDetails from '@/features/session/ui/SessionDetails.vue'
 import CheckoutForm from '@/features/checkout/ui/Form.vue'
 import { getSessionAggregateById } from '@/entities/session/repository/getSessionAggregate'
 import type { ISessionAggregate } from '@/entities/session/models/sessionAggregate'
-import { useRouter } from 'vue-router'
 
 const route = useRoute()
+const router = useRouter()
 const sessionId = Number(route.params.id)
 
 const isLoading = ref(false)
@@ -55,7 +55,7 @@ async function load() {
 onMounted(load)
 
 function handleBookedSuccess() {
-  useRouter().push(`/bookings`)
+  router.push(`/bookings`)
 }
 </script>
 

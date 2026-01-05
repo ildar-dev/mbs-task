@@ -1,7 +1,7 @@
 import type { Router } from 'vue-router'
 import { LOGIN_PAGE, MAIN_PAGE } from './models/routes'
 
-export function goTo(router: Router, to: string, returnTo?: string) {
+export function goToWithReturnTo(router: Router, to: string, returnTo?: string) {
   const current = router.currentRoute.value
   const target = returnTo ?? current?.fullPath ?? '/'
   if (current?.path !== to) {
@@ -10,9 +10,16 @@ export function goTo(router: Router, to: string, returnTo?: string) {
 }
 
 export function goToLogin(router: Router, returnTo?: string) {
-  goTo(router, LOGIN_PAGE, returnTo)
+  goToWithReturnTo(router, LOGIN_PAGE, returnTo)
 }
 
 export function goToMain(router: Router) {
-  goTo(router, MAIN_PAGE)
+  goToWithReturnTo(router, MAIN_PAGE)
+}
+
+export function redirectBack(router: Router, fallback: string = MAIN_PAGE) {
+  const current = router.currentRoute.value
+  const q = current?.query
+  const returnTo = typeof q?.returnTo === 'string' ? q!.returnTo : null
+  void router.push(returnTo ?? fallback).catch(() => {})
 }

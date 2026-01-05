@@ -2,7 +2,7 @@ import { IInterceptorResponseCallback } from './model'
 
 import { useAuthStore } from '@/features/auth/models/store'
 import { router } from '@/router'
-import { redirectToLogin } from '@/shared/router/redirect'
+import { goToLogin } from '@/shared/router/redirect'
 
 export const unauthorizedInterceptor: IInterceptorResponseCallback = {
   onFulfilled: response => response,
@@ -11,7 +11,7 @@ export const unauthorizedInterceptor: IInterceptorResponseCallback = {
     if (status === 401) {
       const store = useAuthStore()
       store.logout()
-      redirectToLogin(router)
+      goToLogin(router)
     }
     return Promise.reject(error)
   }
