@@ -1,7 +1,7 @@
 import type { IMovie } from '../models/movie'
 import type { IDtoMovie } from '@/shared/api/movies/models'
 import { getImageUrl } from '@/shared/api/image/getImageUrl'
-import { minutesToMs } from '@/utils/timeConverter'
+import { minutesToMs } from '@/utils/time/converter'
 
 export function mapDtoToMovie(dto: IDtoMovie): IMovie {
   return {
