@@ -18,6 +18,8 @@ export function getGroupedBookings(
     [EGroupedBookingType.PAST]: [],
   };
 
+  const getSortTime = (b: IBooking) => sessionsById?.[b.sessionId]?.session.startTime.getTime() ?? 0
+
   for (const booking of bookings) {
     let type: EGroupedBookingType;
     if (booking.status === EBookingStatus.UNPAID) {
@@ -30,10 +32,13 @@ export function getGroupedBookings(
     groups[type].push(booking);
   }
 
+  // Сортируем внутри каждой группы по времени начала сеанса (ближайшие сверху)
+  const sortAsc = (a: IBooking, b: IBooking) => getSortTime(a) - getSortTime(b)
+
   return [
-    { type: EGroupedBookingType.UNPAID, bookings: groups[EGroupedBookingType.UNPAID] },
-    { type: EGroupedBookingType.CURRENT, bookings: groups[EGroupedBookingType.CURRENT] },
-    { type: EGroupedBookingType.PAST, bookings: groups[EGroupedBookingType.PAST] },
+    { type: EGroupedBookingType.UNPAID, bookings: groups[EGroupedBookingType.UNPAID].sort(sortAsc) },
+    { type: EGroupedBookingType.CURRENT, bookings: groups[EGroupedBookingType.CURRENT].sort(sortAsc) },
+    { type: EGroupedBookingType.PAST, bookings: groups[EGroupedBookingType.PAST].sort(sortAsc) },
   ];
 }
 

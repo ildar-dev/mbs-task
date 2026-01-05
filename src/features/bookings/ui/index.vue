@@ -38,20 +38,18 @@ async function load() {
   try {
     isLoading.value = true
     error.value = null
-    bookings.value = await getBookingList()
-
-    const uniqueSessionIds: number[] = Array.from(new Set<number>(bookings.value.map((b: IBooking) => b.sessionId)))
     try {
-    const pages = await Promise.all(uniqueSessionIds.map((id: number) => getSessionAggregateById(id)))
-    sessionsById.value = Object.fromEntries(pages.map(p => [p.session.id, p]))
+      bookings.value = await getBookingList()// Неоптимизировано, но явно то, как получаем данные для каждой сессии
+      const uniqueSessionIds: number[] = Array.from(new Set<number>(bookings.value.map((b: IBooking) => b.sessionId)))
+      const pages = await Promise.all(uniqueSessionIds.map((id: number) => getSessionAggregateById(id)))
+      sessionsById.value = Object.fromEntries(pages.map(p => [p.session.id, p]))
+      
+      // Группируем с учётом времени сеансов
+      groups.value = getGroupedBookings(bookings.value, sessionsById.value)
     } catch (e) {
       console.error(e)
-      sessionsById.value = {}
       error.value =  e instanceof Error ? (e.message) : 'Не удалось загрузить билеты'
     }
-
-    // Группируем с учётом времени сеансов
-    groups.value = getGroupedBookings(bookings.value, sessionsById.value)
   } catch (e) {
     error.value = e
   } finally {
