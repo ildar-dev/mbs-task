@@ -4,7 +4,7 @@
       <h3 class="text-lg mb-3 border-b border-white pb-3 pl-7">
         {{ formatDateMMDD(Number(dayTs)) }}
       </h3>
-      <div class="grid gap-4 pl-7" :style="{ gridTemplateColumns: '70px 1fr 1fr' }">
+      <div class="grid gap-4 pl-7" style="grid-template-columns: 70px 1fr 1fr;">
         <template v-for="movieId in movieIds(dayTs)" :key="movieId">
           <div>
             <img v-if="moviesById[movieId]?.posterUrl" :src="moviesById[movieId]?.posterUrl" class="w-16 h-24 object-cover" />

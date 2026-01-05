@@ -43,3 +43,13 @@ export function formatTimeHHMM(ms: number): string {
 export function formatTimeMMSS(ms: number): string {
   return (new Date(ms)).toLocaleTimeString([], { minute: '2-digit', second: '2-digit' })
 }
+/*
+ * Форматирует время в виде mM:SS (без ведущего нуля у минут).
+ * Пример: 5:32, 12:05.
+ *
+ * @param ms Время в миллисекундах
+ * @returns Строка формата mM:SS
+ */
+export function formatTimemMSS(ms: number): string {
+  return (new Date(ms)).toLocaleTimeString([], { minute: 'numeric', second: '2-digit' })
+}

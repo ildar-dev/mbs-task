@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="text-4xl mb-7 text-center">{{ movie.title }}</h2>
-    <div class="grid gap-7" :style="{ gridTemplateColumns: '140px 1fr' }">
+    <div class="grid gap-7" style="grid-template-columns: 140px 1fr;">
       <div>
         <img v-if="movie.posterUrl" :src="movie.posterUrl" alt="" class="object-cover" />
       </div>

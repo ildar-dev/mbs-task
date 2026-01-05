@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col gap-2">
-    <h3 class="text-lg font-semibold" v-if="title">{{ title }}</h3>
+  <div class="flex flex-col gap-2 text-lg">
+    <h3 class="text-lg border-b border-gray-200 pb-4 pl-1" v-if="title">{{ title }}</h3>
     <div v-if="items.length === 0" class="text-sm text-gray-500">Нет бронирований</div>
     <Booking
       v-for="it in items"

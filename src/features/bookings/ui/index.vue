@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-4">
-    <div v-if="isLoading" class="text-gray-500">Загрузка бронирований...</div>
-    <div v-else-if="error" class="text-red-600">{{ error }}</div>
+    <h2 class="text-4xl mb-6 text-center">Мои билеты</h2>
+    <div v-if="error" class="text-red-600">{{ error }}</div>
     <BookingsGroups
       v-else
       :groups="groups"

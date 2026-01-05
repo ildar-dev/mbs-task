@@ -4,7 +4,7 @@
       <h3 class="text-lg mb-3 border-b border-white pb-3 pl-7">
         {{ formatDateMMDD(Number(dayTs)) }}
       </h3>
-      <div class="grid gap-4 pl-7" :style="{ gridTemplateColumns: '1fr 1fr' }">
+      <div class="grid gap-4 pl-7" style="grid-template-columns: 1fr 1fr;">
         <template v-for="cinemaId in cinemaIds(dayTs)" :key="cinemaId">
           <div class="truncate my-auto">
             {{ cinemasById[cinemaId]?.name ?? `#${cinemaId}` }}
