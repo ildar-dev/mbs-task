@@ -27,7 +27,7 @@
               :aria-label="`Ряд ${row}, Место ${seat}`"
               :disabled="bookedKeys.has(toKey(row, seat))"
               @click="onToggle(row, seat)"
-              class="select-none p-0 h-full aspect-square transition-colors rounded-lg"
+              class="select-none p-0 h-full aspect-square transition-colors rounded-lg border border-white"
               :class="{
                 'bg-red-300 text-white cursor-not-allowed opacity-80': bookedKeys.has(toKey(row, seat)),
                 'bg-blue-900 text-white': !bookedKeys.has(toKey(row, seat)) && isSelected(row, seat),

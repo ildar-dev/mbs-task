@@ -17,7 +17,7 @@
       <div class="text-center">{{ m.rating }}</div>
       <div>
         <RouterLink class="underline" :to="`/movie/${m.id}`">
-          <button class="px-3 whitespace-nowrap">
+          <button class="base px-3 whitespace-nowrap">
             Посмотреть сеансы
           </button>
           </RouterLink>

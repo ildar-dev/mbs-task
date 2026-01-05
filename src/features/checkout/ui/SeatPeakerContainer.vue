@@ -1,5 +1,4 @@
 <template>
-<div class="overflow-hidden">
   <div
     class="spc relative spc-scroll overflow-auto"
     :style="{ width, height }"
@@ -7,7 +6,6 @@
     <div class="spc-content inline-block">
       <slot />
     </div>
-  </div>
   </div>
 </template>
 

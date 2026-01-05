@@ -7,7 +7,7 @@
         <p>Кинотеатр: {{ sessionAggregate.cinema.name }}</p>
         <p>Время: {{ timeText }}</p>
       </div>
-      <SeatPeakerContainer class="w-[900px] max-h-[50vh]">
+      <SeatPeakerContainer class="max-w-[700px] max-h-[400px]">
           <SeatPeaker
             :theater="sessionAggregate.session.theater"
             :booked-seats="bookedSeatsLocal"
@@ -17,7 +17,7 @@
       <div class="flex items-center gap-3">
         <button
           type="submit"
-          class="mx-auto mt-6"
+          class="base mx-auto mt-6"
           :disabled="isSubmitting || selectedSeats.length === 0"
         >
           Забронировать

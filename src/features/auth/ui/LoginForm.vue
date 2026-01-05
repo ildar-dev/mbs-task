@@ -11,7 +11,7 @@
         <input v-model="password" type="password" placeholder="Введите пароль" required minlength="8" />
       </label>
       <p v-if="error" class="mt-1 ml-1 text-sm text-red-400">{{ error }}</p>
-      <button class="mt-8 mx-auto" type="submit" :disabled="submitting">Войти</button>
+      <button class="base mt-8 mx-auto" type="submit" :disabled="submitting">Войти</button>
     </form>
       <p class="text-2xl mt-7 text-center">Если у вас нет аккаунта <RouterLink class="under-line" to="/register">зарегистрируйтесь</RouterLink></p>
   </div>

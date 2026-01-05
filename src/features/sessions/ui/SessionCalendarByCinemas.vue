@@ -15,7 +15,7 @@
               :key="s.id"
               :to="`/session/${s.id}`"
             >
-              <button class="px-3 whitespace-nowrap min-w-[80px]">
+              <button class="base px-3 whitespace-nowrap min-w-[80px]">
                 {{ formatTimeHHMM(s.startTime.getTime()) }}
               </button>
             </RouterLink>

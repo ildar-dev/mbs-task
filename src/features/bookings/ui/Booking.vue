@@ -16,7 +16,7 @@
       <button
         v-if="isUnpaid"
         type="button"
-        class="px-4 py-2"
+        class="base px-4 py-2"
         @click="$emit('pay', booking)"
       >
         Оплатить

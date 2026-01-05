@@ -16,7 +16,7 @@
       <div class="text-xl truncate">{{ c.address }}</div>
       <div class="text-center pr-5">
         <RouterLink :to="`/cinema/${c.id}`">
-          <button class="px-3 whitespace-nowrap">Посмотреть сеансы</button>
+          <button class="base px-3 whitespace-nowrap">Посмотреть сеансы</button>
         </RouterLink>
       </div>
     </div>

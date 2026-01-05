@@ -18,7 +18,7 @@
         <small v-if="passwordConfirm && !passwordsMatch" class="mt-1 ml-1 text-sm text-red-400">Пароли должны совпадать</small>
       </label>
       <p v-if="error" class="mt-1 ml-1 text-sm text-red-400">{{ error }}</p>
-      <button class="mt-8 mx-auto" type="submit" :disabled="submitting || !formValid">Зарегистрироваться</button>
+      <button class="base mt-8 mx-auto" type="submit" :disabled="submitting || !formValid">Зарегистрироваться</button>
     </form>
     <p class="text-2xl mt-7 text-center">
       Если вы уже зарегистрированы

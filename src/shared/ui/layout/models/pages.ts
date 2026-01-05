@@ -1,7 +1,10 @@
 export const pages = [
-  { title: 'Фильмы', path: '/movies', header: 'Фильмы / Главная', isOnMenu: true },
-  { title: 'Кинотеатры', path: '/cinemas', header: 'Кинотеатры', isOnMenu: true },
-  { title: 'Мои билеты', path: '/bookings', header: 'Мои билеты', isOnMenu: true },
-  { title: 'Вход', path: '/login', header: 'Вход', isOnMenu: true },
-  { title: 'Регистрация', path: '/register', header: 'Регистрация', isOnMenu: false },
+  { name: 'movies', title: 'Фильмы', header: 'Фильмы / Главная', isOnMenu: true },
+  { name: 'cinemas', title: 'Кинотеатры', header: 'Кинотеатры', isOnMenu: true },
+  { name: 'bookings', title: 'Мои билеты', header: 'Мои билеты', isOnMenu: true },
+  { name: 'login', title: 'Вход', header: 'Вход', isOnMenu: true },
+  { name: 'register', title: 'Регистрация', header: 'Регистрация', isOnMenu: false },
+  { name: 'session', title: 'Сеанс', header: 'Сеанс', isOnMenu: false },
+  { name: 'movie', title: 'Фильм', header: 'Фильм', isOnMenu: false },
+  { name: 'cinema', title: 'Кинотеатр', header: 'Кинотеатр', isOnMenu: false },
 ]
