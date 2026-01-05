@@ -11,8 +11,11 @@ export function startOfDayTs(date: Date): number {
 export function groupedSessionsByDateCinema(
   sessions: ISession[],
 ): TSessionsMatrixByDateCinema {
+  // Сортируем сеансы по времени начала
+  const sorted = [...sessions].sort((a, b) => a.startTime.getTime() - b.startTime.getTime())
+
   const raw: TSessionsMatrixByDateCinema = {}
-  for (const s of sessions) {
+  for (const s of sorted) {
     const day = startOfDayTs(s.startTime)
     raw[day] ??= {}
     raw[day][s.cinemaId] ??= []
@@ -24,8 +27,11 @@ export function groupedSessionsByDateCinema(
 export function groupedSessionsByDateMovie(
   sessions: ISession[],
 ): TSessionsMatrixByDateMovie {
+  // Сортируем сеансы по времени начала
+  const sorted = [...sessions].sort((a, b) => a.startTime.getTime() - b.startTime.getTime())
+
   const raw: TSessionsMatrixByDateMovie = {}
-  for (const s of sessions) {
+  for (const s of sorted) {
     const day = startOfDayTs(s.startTime)
     raw[day] ??= {}
     raw[day][s.movieId] ??= []
