@@ -5,7 +5,7 @@
     </div>
     <div v-else>
       <div v-if="isLoading" class="text-gray-500">Загрузка...</div>
-      <div v-else-if="error" class="text-red-600">Ошибка загрузки</div>
+      <div v-else-if="error" class="text-red-600">{{ error }}</div>
       <template v-else-if="page">
         <SessionDetails
           :session="page.session"
@@ -46,7 +46,7 @@ async function load() {
     error.value = null
     page.value = await getSessionAggregateById(sessionId)
   } catch (e) {
-    error.value = e
+    error.value = e instanceof Error ? (e.message) : 'Не удалось загрузить сеанс'
   } finally {
     isLoading.value = false
   }

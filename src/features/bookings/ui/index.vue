@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-4">
     <div v-if="isLoading" class="text-gray-500">Загрузка бронирований...</div>
-    <div v-else-if="error" class="text-red-600">Ошибка загрузки</div>
+    <div v-else-if="error" class="text-red-600">{{ error }}</div>
     <BookingsGroups
       v-else
       :groups="groups"
@@ -40,10 +40,15 @@ async function load() {
     error.value = null
     bookings.value = await getBookingList()
 
-    // Подтянем данные сессий разом
     const uniqueSessionIds: number[] = Array.from(new Set<number>(bookings.value.map((b: IBooking) => b.sessionId)))
+    try {
     const pages = await Promise.all(uniqueSessionIds.map((id: number) => getSessionAggregateById(id)))
     sessionsById.value = Object.fromEntries(pages.map(p => [p.session.id, p]))
+    } catch (e) {
+      console.error(e)
+      sessionsById.value = {}
+      error.value =  e instanceof Error ? (e.message) : 'Не удалось загрузить билеты'
+    }
 
     // Группируем с учётом времени сеансов
     groups.value = getGroupedBookings(bookings.value, sessionsById.value)
