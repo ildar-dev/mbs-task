@@ -10,7 +10,7 @@
           <button v-if="isAuthenticated" class="text-left hover:underline" @click="onLogoutClick">Выход</button>
         </nav>
       </aside>
-      <main class="min-h-[800px] flex-1 p-6">
+      <main class="min-h-[800px] flex-1 p-[80px] pt-[50px]">
         <RouterView />
       </main>
     </div>

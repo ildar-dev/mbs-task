@@ -6,7 +6,7 @@
         <span class="ml-1 text-sm">Логин</span>
         <input v-model.trim="username" type="text" placeholder="Введите логин" required minlength="8" />
       </label>
-      <label class="mt-5 flex flex-col gap-1">
+      <label class="mt-6 flex flex-col gap-1">
         <span class="ml-1 text-sm">Пароль</span>
         <input v-model="password" type="password" placeholder="Введите пароль" required minlength="8" />
       </label>

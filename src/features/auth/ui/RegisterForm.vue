@@ -1,28 +1,29 @@
 <template>
-  <div class="max-w-md mx-auto">
-    <h2 class="text-2xl mb-6 text-center">Регистрация</h2>
-    <form @submit.prevent="onSubmit" class="flex flex-col gap-4">
-      <label class="flex flex-col gap-2">
-        <span>Логин</span>
-        <input v-model.trim="username" type="text" class="bg-black text-white border border-white p-2" required minlength="8" />
-        <small v-if="username && !isValidUsername(username)" class="text-red-400">Минимум 8 символов</small>
+  <div class="mx-auto">
+    <h2 class="text-4xl mb-6 text-center">Регистрация</h2>
+    <form @submit.prevent="onSubmit" class="max-w-[300px] flex flex-col mx-auto">
+      <label class="flex flex-col gap-1">
+        <span class="ml-1 text-sm">Логин</span>
+        <input v-model.trim="username" type="text" placeholder="Введите логин" required minlength="8" />
+        <small v-if="username && !isValidUsername(username)" class="mt-1 ml-1 text-sm text-red-400">Минимум 8 символов</small>
       </label>
-      <label class="flex flex-col gap-2">
-        <span>Пароль</span>
-        <input v-model="password" type="password" class="bg-black text-white border border-white p-2" required minlength="8" />
-        <small v-if="password && !passwordValid" class="text-red-400">Минимум 8 символов, 1 заглавная буква и 1 цифра</small>
+      <label class="mt-6 flex flex-col gap-1">
+        <span class="ml-1 text-sm">Пароль</span>
+        <input v-model="password" type="password" placeholder="Введите пароль" required minlength="8" />
+        <small v-if="password && !passwordValid" class="mt-1 ml-1 text-sm text-red-400">Минимум 8 символов, 1 заглавная буква и 1 цифра</small>
       </label>
-      <label class="flex flex-col gap-2">
-        <span>Подтверждение пароля</span>
-        <input v-model="passwordConfirm" type="password" class="bg-black text-white border border-white p-2" required />
-        <small v-if="passwordConfirm && !passwordsMatch" class="text-red-400">Пароли должны совпадать</small>
+      <label class="mt-6 flex flex-col gap-1">
+        <span class="ml-1 text-sm">Подтверждение пароля</span>
+        <input v-model="passwordConfirm" type="password" placeholder="Повторите пароль" required />
+        <small v-if="passwordConfirm && !passwordsMatch" class="mt-1 ml-1 text-sm text-red-400">Пароли должны совпадать</small>
       </label>
-      <p v-if="error" class="text-red-400">{{ error }}</p>
-      <div class="flex gap-3">
-        <button class="border border-white px-4 py-2" type="submit" :disabled="submitting || !formValid">Зарегистрироваться</button>
-        <RouterLink class="underline" to="/login">У меня уже есть аккаунт</RouterLink>
-      </div>
+      <p v-if="error" class="mt-1 ml-1 text-sm text-red-400">{{ error }}</p>
+      <button class="mt-8 mx-auto" type="submit" :disabled="submitting || !formValid">Зарегистрироваться</button>
     </form>
+    <p class="text-2xl mt-7 text-center">
+      Если вы уже зарегистрированы
+      <RouterLink class="under-line" to="/login">войдите</RouterLink>
+    </p>
   </div>
 </template>
 
