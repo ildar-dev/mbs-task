@@ -1,10 +1,10 @@
-import { IInterceptorResponseCallback } from './model'
+import { IInterceptorResponse } from './model'
 
 import { useAuthStore } from '@/features/auth/models/store'
 import { router } from '@/router'
 import { goToLogin } from '@/shared/router/redirect'
 
-export const unauthorizedInterceptor: IInterceptorResponseCallback = {
+export const unauthorizedInterceptor: IInterceptorResponse = {
   onFulfilled: response => response,
   onRejected: error => {
     const status = error?.response?.status
