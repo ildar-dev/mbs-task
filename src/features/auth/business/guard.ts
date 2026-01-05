@@ -8,5 +8,3 @@ export const authGuard: NavigationGuard = (to) => {
   }
   return true
 }
-
-
