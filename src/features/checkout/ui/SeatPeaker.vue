@@ -1,32 +1,42 @@
 <template>
-  <div class="flex flex-col items-center gap-3">
-    <div
-      class="grid gap-1 sm:gap-1.5"
-      :style="{
-        gridTemplateColumns: `repeat(${props.theater.size.seatsPerRow}, minmax(0, 1fr))`,
-      }"
-      role="grid"
-      aria-label="Схема зала"
-    >
-      <button
-        v-for="cell in cells"
-        :key="cell.key"
-        type="button"
-        role="gridcell"
-        :aria-label="`Ряд ${cell.row}, Место ${cell.seat}`"
-        :disabled="cell.booked"
-        @click="onToggle(cell.row, cell.seat)"
-        class="flex items-center justify-center select-none rounded text-xs sm:text-sm font-medium h-8 w-8 sm:h-10 sm:w-10 transition-colors"
-        :class="{
-          'bg-red-500 text-white cursor-not-allowed opacity-80': cell.booked,
-          'bg-blue-600 text-white': !cell.booked && isSelected(cell.row, cell.seat),
-          'bg-gray-200 hover:bg-gray-300': !cell.booked && !isSelected(cell.row, cell.seat),
-        }"
-      >
-        {{ cell.seat }}
-      </button>
-    </div>
-  </div>
+        <div
+          class="grid gap-4"
+          :style="{
+            gridTemplateColumns: `max-content repeat(${props.theater.size.seatsPerRow}, 40px)`,
+          }"
+        >
+          <!-- верхняя пустая ячейка + номера мест -->
+          <div></div>
+          <div
+            v-for="seat in seatNumbers"
+            :key="`h-${seat}`"
+            class="text text-center select-none h-4 sm:h-5 flex items-center justify-center"
+          >
+            {{ seat }}
+          </div>
+
+          <!-- ряды: слева метка 'ряд N' + места -->
+          <template v-for="row in rowNumbers" :key="`r-${row}`">
+            <div class="text-sm text-right select-none whitespace-nowrap h-full flex items-center">
+              ряд {{ row }}
+            </div>
+            <button
+              v-for="seat in seatNumbers"
+              :key="toKey(row, seat)"
+              type="button"
+              :aria-label="`Ряд ${row}, Место ${seat}`"
+              :disabled="bookedKeys.has(toKey(row, seat))"
+              @click="onToggle(row, seat)"
+              class="select-none p-0 h-full aspect-square transition-colors rounded-lg"
+              :class="{
+                'bg-red-300 text-white cursor-not-allowed opacity-80': bookedKeys.has(toKey(row, seat)),
+                'bg-blue-900 text-white': !bookedKeys.has(toKey(row, seat)) && isSelected(row, seat),
+                '': !bookedKeys.has(toKey(row, seat)) && !isSelected(row, seat),
+              }"
+            >
+            </button>
+          </template>
+        </div>
 </template>
 
 <script setup lang="ts">
@@ -57,28 +67,12 @@ const bookedKeys = computed<Set<string>>(() => {
   return s
 })
 
-const cells = computed(() => {
-  const list: Array<{
-    key: string
-    row: number
-    seat: number
-    booked: boolean
-  }> = []
-  const rows = props.theater.size.rows
-  const seatsPerRow = props.theater.size.seatsPerRow
-  for (let r = 1; r <= rows; r++) {
-    for (let s = 1; s <= seatsPerRow; s++) {
-      const key = toKey(r, s)
-      list.push({
-        key,
-        row: r,
-        seat: s,
-        booked: bookedKeys.value.has(key),
-      })
-    }
-  }
-  return list
-})
+const rowNumbers = computed<number[]>(() =>
+  Array.from({ length: props.theater.size.rows }, (_, i) => i + 1)
+)
+const seatNumbers = computed<number[]>(() =>
+  Array.from({ length: props.theater.size.seatsPerRow }, (_, i) => i + 1)
+)
 
 function isSelected(row: number, seat: number): boolean {
   return selectedKeys.value.has(toKey(row, seat))

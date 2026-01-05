@@ -6,17 +6,9 @@
     <div v-else>
       <div v-if="isLoading" class="text-gray-500">Загрузка...</div>
       <div v-else-if="error" class="text-red-600">{{ error }}</div>
-      <template v-else-if="page">
-        <SessionDetails
-          :session="page.session"
-          :movie="page.movie"
-          :cinema="page.cinema"
-        />
-        <div class="h-px bg-gray-200 my-2"></div>
+      <template v-else-if="sessionAggregate">
         <CheckoutForm
-          :session-id="sessionId"
-          :theater="page.session.theater"
-          :booked-seats="page.session.bookedSeats"
+          :session-aggregate="sessionAggregate"
           @success="handleBookedSuccess"
         />
       </template>
@@ -27,24 +19,23 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import SessionDetails from '@/features/session/ui/SessionDetails.vue'
 import CheckoutForm from '@/features/checkout/ui/Form.vue'
+
 import { getSessionAggregateById } from '@/entities/session/repository/getSessionAggregate'
 import type { ISessionAggregate } from '@/entities/session/models/sessionAggregate'
 
 const route = useRoute()
 const router = useRouter()
 const sessionId = Number(route.params.id)
-
+const sessionAggregate = ref<ISessionAggregate | null>(null)
 const isLoading = ref(false)
 const error = ref<unknown>(null)
-const page = ref<ISessionAggregate | null>(null)
 
 async function load() {
   try {
     isLoading.value = true
     error.value = null
-    page.value = await getSessionAggregateById(sessionId)
+    sessionAggregate.value = await getSessionAggregateById(sessionId)
   } catch (e) {
     error.value = e instanceof Error ? (e.message) : 'Не удалось загрузить сеанс'
   } finally {
