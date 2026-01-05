@@ -1,3 +1,3 @@
-export interface IDtoSettings {
+export interface ISettings {
   bookingPaymentTimeSeconds: number
 }
