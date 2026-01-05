@@ -1,6 +1,6 @@
 <template>
-  <div class="max-w-md">
-    <h2 class="text-2xl mb-6">Регистрация</h2>
+  <div class="max-w-md mx-auto">
+    <h2 class="text-2xl mb-6 text-center">Регистрация</h2>
     <form @submit.prevent="onSubmit" class="flex flex-col gap-4">
       <label class="flex flex-col gap-2">
         <span>Логин</span>
