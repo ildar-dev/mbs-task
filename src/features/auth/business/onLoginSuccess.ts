@@ -1,7 +1,7 @@
-import { router } from '@/router'
+import { useRedirectBack } from '@/shared/router/useRedirectBack'
+
+const { redirectBack } = useRedirectBack()
 
 export function onLoginSuccess() {
-  const { query } = router.currentRoute.value
-  const returnTo = typeof query.returnTo === 'string' ? query.returnTo : null
-  router.push(returnTo ?? '/movies')
+  redirectBack()
 }

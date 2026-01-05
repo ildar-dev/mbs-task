@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import { authGuard } from '@/features/auth/business/guard'
+import { MAIN_PAGE } from '@/shared/router/models/routes'
 
 const routes: RouteRecordRaw[] = [
-  { path: '/', redirect: '/movies' },
+  { path: '/', redirect: MAIN_PAGE },
   { path: '/movies', name: 'movies', component: () => import('../pages/Movies.vue') },
   { path: '/cinemas', name: 'cinemas', component: () => import('../pages/Cinemas.vue') },
   { path: '/bookings', name: 'bookings', component: () => import('../pages/Bookings.vue') },

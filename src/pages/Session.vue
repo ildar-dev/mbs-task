@@ -31,6 +31,7 @@ import SessionDetails from '@/features/session/ui/SessionDetails.vue'
 import CheckoutForm from '@/features/checkout/ui/Form.vue'
 import { getSessionAggregateById } from '@/entities/session/repository/getSessionAggregate'
 import type { ISessionAggregate } from '@/entities/session/models/sessionAggregate'
+import { useRouter } from 'vue-router'
 
 const route = useRoute()
 const sessionId = Number(route.params.id)
@@ -54,8 +55,7 @@ async function load() {
 onMounted(load)
 
 function handleBookedSuccess() {
-  // После успешной брони обновим данные сеанса (занятые места)
-  void load()
+  useRouter().push(`/bookings`)
 }
 </script>
 

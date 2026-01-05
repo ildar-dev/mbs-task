@@ -39,7 +39,6 @@ const passwordConfirm = ref('')
 const error = ref('')
 const submitting = ref(false)
 
-const router = useRouter()
 const { register } = useAuth()
 
 

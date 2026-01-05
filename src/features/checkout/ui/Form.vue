@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { watch, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useAuthRedirect } from '@/shared/router/useAuthRedirect'
 import SeatPeaker from './SeatPeaker.vue'
 import type { ISeat } from '@/entities/theater/models/seat'
 import type { ITheater } from '@/entities/theater/models/theater'
@@ -46,9 +46,8 @@ const isSubmitting = ref(false)
 const submitError = ref<string | null>(null)
 const selectedSeats = ref<ISeat[]>([])
 const bookedSeatsLocal = ref<ISeat[]>([])
-const router = useRouter()
-const route = useRoute()
 const { isAuthenticated } = useAuth()
+const { toLogin } = useAuthRedirect()
 
 // Синхронизируем локальную копию занятых мест с пропсами
 watch(
@@ -68,17 +67,19 @@ async function onSubmit() {
   try {
     submitError.value = null
     if (!isAuthenticated.value) {
-      const returnTo = route.fullPath || `/session/${props.sessionId}`
-      await router.push({ path: '/login', query: { returnTo } })
+      await toLogin(`/session/${props.sessionId}`)
       return
     }
     validateSeatsSelection(selectedSeats.value, props.theater, props.bookedSeats);
     isSubmitting.value = true
+    try {
     await checkout(props.sessionId, selectedSeats.value)
-    // Локально обновим занятые места для UX, затем сообщим об успехе
-    bookedSeatsLocal.value = [...bookedSeatsLocal.value, ...selectedSeats.value]
-    selectedSeats.value = []
-    emit('success')
+      emit('success')
+    } catch (e) {
+      submitError.value = e instanceof Error ? e.message : 'Не удалось оформить бронь'
+    } finally {
+      isSubmitting.value = false
+    }
   } catch (e) {
     submitError.value = e instanceof Error ? e.message : 'Не удалось оформить бронь'
   } finally {
