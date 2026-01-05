@@ -2,9 +2,9 @@
   <div>
     <div class="grid gap-1 border-b border-white pb-3 mb-4" :style="{ gridTemplateColumns: gridTemplate }">
       <div></div>
-      <div class="font-semibold">Название</div>
-      <div class="font-semibold text-center">Продолжительность</div>
-      <div class="font-semibold text-center">Рейтинг</div>
+      <div class="">Название</div>
+      <div class="text-center">Продолжительность</div>
+      <div class="text-center">Рейтинг</div>
       <div></div>
     </div>
 
