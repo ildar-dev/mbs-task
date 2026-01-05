@@ -6,6 +6,7 @@
       :title="getGroupTitle(group.type)"
       :items="group.items"
       @pay="$emit('pay', $event)"
+      @expired="$emit('expired', $event)"
     />
   </div>
 </template>
@@ -24,7 +25,8 @@ const props = defineProps<{
 }>()
 
 defineEmits<{
-  (e: 'pay', bookingId: string): void
+  (e: 'pay', booking: IBooking): void
+  (e: 'expired', bookingId: string): void
 }>()
 
 const groups = computed(() =>

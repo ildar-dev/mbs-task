@@ -7,6 +7,7 @@
       :groups="groups"
       :sessions-by-id="sessionsById"
       @pay="onPay"
+      @expired="onExpired"
     />
   </div>
 </template>
@@ -53,15 +54,19 @@ async function load() {
 
 onMounted(load)
 
-async function onPay(bookingId: string) {
+async function onPay(booking: IBooking) {
   try {
-    const res = await pay(bookingId)
+    const res = await pay(booking)
     if (res.status === EPaymentStatus.SUCCESS) {
       await load()
     }
   } catch (e) {
     console.error(e)
   }
+}
+
+async function onExpired() {
+  await load()
 }
 </script>
 

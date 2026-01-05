@@ -7,7 +7,8 @@
       :key="it.booking.id"
       :booking="it.booking"
       :session-page="it.sessionPage"
-      @pay="$emit('pay', it.booking.id)"
+      @pay="$emit('pay', it.booking)"
+      @expired="$emit('expired', it.booking.id)"
     />
   </div>
 </template>
@@ -23,7 +24,8 @@ const props = defineProps<{
 }>()
 
 defineEmits<{
-  (e: 'pay', bookingId: string): void
+  (e: 'pay', booking: IBooking): void
+  (e: 'expired', bookingId: string): void
 }>()
 </script>
 
