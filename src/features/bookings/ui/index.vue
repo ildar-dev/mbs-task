@@ -39,12 +39,14 @@ async function load() {
     isLoading.value = true
     error.value = null
     bookings.value = await getBookingList()
-    groups.value = getGroupedBookings(bookings.value)
 
     // Подтянем данные сессий разом
     const uniqueSessionIds: number[] = Array.from(new Set<number>(bookings.value.map((b: IBooking) => b.sessionId)))
     const pages = await Promise.all(uniqueSessionIds.map((id: number) => getSessionAggregateById(id)))
     sessionsById.value = Object.fromEntries(pages.map(p => [p.session.id, p]))
+
+    // Группируем с учётом времени сеансов
+    groups.value = getGroupedBookings(bookings.value, sessionsById.value)
   } catch (e) {
     error.value = e
   } finally {

@@ -1,5 +1,5 @@
-import { MINUTES_TO_SECONDS, MS_IN_SECOND } from './consts';
+import { SECONDS_IN_MINUTE, MS_IN_SECOND } from './consts';
 
 export function minutesToMs(minutes: number): number {
-  return minutes * MINUTES_TO_SECONDS * MS_IN_SECOND;
+  return minutes * SECONDS_IN_MINUTE * MS_IN_SECOND;
 }
