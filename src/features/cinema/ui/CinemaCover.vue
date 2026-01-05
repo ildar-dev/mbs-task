@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h2 class="text-2xl mb-4">{{ cinema.name }}</h2>
-    <div class="opacity-90" v-if="cinema.address">Адрес: {{ cinema.address }}</div>
+    <h2 class="text-4xl mb-4 border-b border-white pb-10 text-center">{{ cinema.name }}</h2>
   </div>
 </template>
 

@@ -1,7 +1,5 @@
 <template>
-  <div class="p-6 flex justify-center">
-    <RegisterForm />
-  </div>
+  <RegisterForm />
 </template>
 
 <script setup lang="ts">

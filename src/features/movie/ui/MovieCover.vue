@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h2 class="text-2xl mb-4">{{ movie.title }}</h2>
-    <div class="grid grid-cols-3 gap-6">
+    <h2 class="text-4xl mb-7 text-center">{{ movie.title }}</h2>
+    <div class="grid gap-7" :style="{ gridTemplateColumns: '140px 1fr' }">
       <div>
-        <img v-if="movie.posterUrl" :src="movie.posterUrl" alt="" class="w-48 h-72 object-cover" />
+        <img v-if="movie.posterUrl" :src="movie.posterUrl" alt="" class="object-cover" />
       </div>
-      <div class="col-span-2 space-y-3">
-        <p class="opacity-90">{{ movie.description }}</p>
-        <div>Год: {{ movie.year }}</div>
-        <div>Длительность: {{ formatTimeHHMM(movie.lengthInMs) }}</div>
+      <div>
+        <p>{{ movie.description }}</p>
+        <div class="mt-3">Год: {{ movie.year }}</div>
+        <div>Длительность: {{ formatTimehHMM(movie.lengthInMs) }}</div>
         <div>Рейтинг: {{ movie.rating }}</div>
       </div>
     </div>
@@ -17,6 +17,6 @@
 
 <script setup lang="ts">
 import type { IMovie } from '@/entities/movie/models/movie'
-import { formatTimeHHMM } from '@/utils/time/formatter'
+import { formatTimehHMM } from '@/utils/time/formatter'
 const props = defineProps<{ movie: IMovie }>()
 </script>

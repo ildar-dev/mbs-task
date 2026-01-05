@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <MovieFeature :movie-id="movieId" />
-  </div>
+  <MovieFeature :movie-id="movieId" />
 </template>
 
 <script setup lang="ts">

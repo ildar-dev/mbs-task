@@ -1,22 +1,26 @@
 <template>
-  <div class="space-y-6">
+  <div class="space-y-8">
     <section v-for="dayTs in sortedDays" :key="dayTs">
-      <h3 class="text-lg font-semibold mb-3">
+      <h3 class="text-lg mb-3 border-b border-white pb-3 pl-7">
         {{ formatDateMMDD(Number(dayTs)) }}
       </h3>
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid gap-4 pl-7" :style="{ gridTemplateColumns: '70px 1fr 1fr' }">
         <template v-for="movieId in movieIds(dayTs)" :key="movieId">
-          <div class="truncate">
+          <div>
+            <img v-if="moviesById[movieId]?.posterUrl" :src="moviesById[movieId]?.posterUrl" class="w-16 h-24 object-cover" />
+          </div>
+          <div class="truncate my-auto">
             {{ moviesById[movieId]?.title ?? `#${movieId}` }}
           </div>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-5 my-auto">
             <RouterLink
               v-for="s in matrix[dayTs][movieId]"
               :key="s.id"
-              class="border border-white px-2 py-1 hover:underline"
               :to="`/session/${s.id}`"
             >
-              {{ formatTimeHHMM(s.startTime.getTime()) }}
+              <button class="px-3 whitespace-nowrap min-w-[80px]">
+                {{ formatTimeHHMM(s.startTime.getTime()) }}
+              </button>
             </RouterLink>
           </div>
         </template>

@@ -1,7 +1,5 @@
 <template>
-  <div class="container mx-auto p-4">
-    <BookingsFeature />
-  </div>
+  <BookingsFeature />
 </template>
 
 <script setup lang="ts">

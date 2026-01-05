@@ -1,7 +1,5 @@
 <template>
-  <div class="p-6">
-    <LoginForm />
-  </div>
+  <LoginForm />
 </template>
 
 <script setup lang="ts">
