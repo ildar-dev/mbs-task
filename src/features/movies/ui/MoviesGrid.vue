@@ -24,6 +24,6 @@
 
 <script setup lang="ts">
 import type { IMovie } from '@/entities/movie/models/movie'
-import { formatTimeHHMM } from '@/utils/timeConverter'
+import { formatTimeHHMM } from '@/utils/time/formatter'
 const props = defineProps<{ movies: IMovie[] }>()
 </script>

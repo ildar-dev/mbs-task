@@ -29,7 +29,7 @@
 import { computed } from 'vue'
 import type { TSessionsMatrixByDateCinema } from '@/features/sessions/models/sessionsMatrixByDateCinema'
 import type { TCinemaDictionary } from '@/features/sessions/models/cinemaDictionary'
-import { formatDateMMDD, formatTimeHHMM } from '@/utils/timeConverter'
+import { formatDateMMDD, formatTimeHHMM } from '@/utils/time/formatter'
 
 const props = defineProps<{
   matrix: TSessionsMatrixByDateCinema,

@@ -29,7 +29,7 @@
 import { computed } from 'vue'
 import type { TSessionsMatrixByDateMovie } from '@/features/sessions/models/sessionsMatrixByDateMovie'
 import type { IMovie } from '@/entities/movie/models/movie'
-import { formatDateMMDD, formatTimeHHMM } from '@/utils/timeConverter'
+import { formatDateMMDD, formatTimeHHMM } from '@/utils/time/formatter'
 
 const props = defineProps<{
   matrix: TSessionsMatrixByDateMovie,
