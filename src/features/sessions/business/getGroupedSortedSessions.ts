@@ -58,4 +58,3 @@ export function groupedSortedSessionsByDateMovie(
   }
   return result
 }
-

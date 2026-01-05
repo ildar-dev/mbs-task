@@ -11,7 +11,11 @@ import { getCinemas } from '@/features/cinemas/business/getCinemas'
 const cinemas = ref<ICinema[]>([])
 
 onMounted(async () => {
-  cinemas.value = await getCinemas()
+  try {
+    cinemas.value = await getCinemas()
+  } catch (e) {
+    console.error(e)
+  }
 })
 </script>
 

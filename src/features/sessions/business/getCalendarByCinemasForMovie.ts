@@ -9,13 +9,15 @@ export async function getCalendarByCinemasForMovie(movieId: number): Promise<{
   cinemasById: TCinemaDictionary,
   matrix: TSessionsMatrixByDateCinema,
 }> {
-  const [cinemas, sessionsDto] = await Promise.all([
-    getCinemas(),
-    getSessionsByMovie(movieId),
-  ])
-  const cinemasById = Object.fromEntries(cinemas.map(c => [c.id, c])) as TCinemaDictionary
-  const sessions = sessionsDto.map(mapDtoToSession)
-  const matrix = groupedSortedSessionsByDateCinema(sessions, cinemasById)
-  return { cinemasById, matrix }
+    const [cinemas, sessionsDto] = await Promise.all([
+      getCinemas(),
+      getSessionsByMovie(movieId),
+    ]).catch(e => {
+      console.error(e)
+      return [[], []]
+    })
+    const cinemasById = Object.fromEntries(cinemas.map(c => [c.id, c])) as TCinemaDictionary
+    const sessions = sessionsDto.map(mapDtoToSession)
+    const matrix = groupedSortedSessionsByDateCinema(sessions, cinemasById)
+    return { cinemasById, matrix }
 }
-

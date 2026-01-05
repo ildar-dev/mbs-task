@@ -12,7 +12,10 @@ import { getMovies } from '../business/getMovies'
 const movies = ref<IMovie[]>([])
 
 onMounted(async () => {
-  movies.value = await getMovies()
+  try {
+    movies.value = await getMovies()
+  } catch (e) {
+    console.error(e)
+  }
 })
 </script>
-
