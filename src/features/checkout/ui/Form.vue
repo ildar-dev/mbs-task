@@ -73,7 +73,7 @@ async function onSubmit() {
     validateSeatsSelection(selectedSeats.value, props.theater, props.bookedSeats);
     isSubmitting.value = true
     try {
-    await checkout(props.sessionId, selectedSeats.value)
+      await checkout(props.sessionId, selectedSeats.value)
       emit('success')
     } catch (e) {
       submitError.value = e instanceof Error ? e.message : 'Не удалось оформить бронь'
