@@ -19,8 +19,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useAuth } from '@/features/auth/composables/useAuth'
-import { onLoginSuccess } from '@/features/auth/business/onLoginSuccess'
+import { useAuth, onLoginSuccess } from '@/features/auth'
 
 const username = ref('')
 const password = ref('')

@@ -23,9 +23,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useAuth } from '@/features/auth/composables/useAuth'
+import { useAuth, onLogout } from '@/features/auth'
 import { pages } from './models/pages'
-import { onLogout } from '@/features/auth/business/onLogout'
 
 const route = useRoute()
 const title = computed(() => pages.find(page => page.name === route.name)?.header ?? '')

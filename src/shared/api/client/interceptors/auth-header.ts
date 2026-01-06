@@ -1,5 +1,5 @@
 import { IInterceptorRequest } from './model'
-import { useAuthStore } from '@/features/auth/models/store'
+import { useAuthStore } from '@/features/auth'
 
 export const authHeaderInterceptor: IInterceptorRequest = {
   onFulfilled: config => {

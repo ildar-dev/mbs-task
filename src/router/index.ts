@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import { authGuard } from '@/features/auth/business/guard'
+import { authGuard } from '@/features/auth'
 import { MAIN_PAGE } from '@/shared/router/models/routes'
 
 const routes: RouteRecordRaw[] = [
