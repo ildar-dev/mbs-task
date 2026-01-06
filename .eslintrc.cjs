@@ -31,6 +31,25 @@ module.exports = {
         project: null,
       },
     },
+    // FSD: ограничения импортов
+    {
+      files: ['src/features/**/*.ts', 'src/features/**/*.vue'],
+      rules: {
+        // запрет зависеть от app
+        'no-restricted-imports': ['error', {
+          patterns: ['@/app/*']
+        }],
+      },
+    },
+    {
+      files: ['src/**'],
+      rules: {
+        // запрет deep-import'ов фич (разрешён только публичный API)
+        'no-restricted-imports': ['error', {
+          patterns: ['@/features/*/*/**']
+        }],
+      },
+    },
   ],
   rules: {
     'vue/multi-word-component-names': 'off',
