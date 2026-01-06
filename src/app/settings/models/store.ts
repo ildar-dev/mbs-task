@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { ISettings } from '@/app/settings/models/settings'
+import type { ISettings } from '@/shared/config/models/settings'
 
 type TSettingsState = {
   settings: ISettings | null

@@ -29,7 +29,10 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useAuth, onLoginSuccess, isValidUsername, isValidPassword, isPasswordConfirmed } from '@/features/auth'
+import { useRouter } from 'vue-router'
+import { useAuth } from '@/features/auth/composables/useAuth'
+import { onLoginSuccess } from '@/features/auth/business/onLoginSuccess'
+import { isValidUsername, isValidPassword, isPasswordConfirmed } from '@/features/auth/business/validation'
 
 const username = ref('')
 const password = ref('')
@@ -38,6 +41,7 @@ const error = ref('')
 const submitting = ref(false)
 
 const { register } = useAuth()
+const router = useRouter()
 
 const passwordValid = computed(() => isValidPassword(password.value))
 const passwordsMatch = computed(() => isPasswordConfirmed(password.value, passwordConfirm.value))
@@ -53,7 +57,7 @@ async function onSubmit() {
   submitting.value = true
   try {
     await register(username.value, password.value)
-    onLoginSuccess()
+    onLoginSuccess(router)
   } catch (e) {
     error.value = e instanceof Error ? (e.message) : 'Не удалось зарегистрироваться'
   } finally {

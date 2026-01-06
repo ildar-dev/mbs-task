@@ -1,6 +1,6 @@
-import { router } from '@/router'
+import type { Router } from 'vue-router'
 import { redirectBack } from '@/shared/router/redirect'
 
-export function onLoginSuccess() {
+export function onLoginSuccess(router: Router) {
   redirectBack(router)
 }

@@ -34,7 +34,7 @@ import type { ISessionAggregate } from '@/entities/session/models/sessionAggrega
 import { computed, watch, ref } from 'vue'
 import { formatDateMMDD, formatTimehHMM, formatTimeMMSS } from '@/utils/time/formatter'
 import { MS_IN_SECOND } from '@/utils/time/consts'
-import { useSettingsStore } from '@/app/settings/models/store'
+import { useAppSettings } from '@/shared/config/useAppSettings'
 import { useTick } from '@/shared/utils/composables/useTick'
 
 const props = defineProps<{
@@ -51,11 +51,10 @@ const dateTimeText = computed(() => formatDateMMDD(props.sessionPage.session.sta
 
 const isUnpaid = computed(() => props.booking.status === 'unpaid')
 
-const settingsStore = useSettingsStore()
-const paymentWindowMs = computed(() => (settingsStore.settings?.bookingPaymentTimeSeconds ?? 0) * MS_IN_SECOND)
-const allowUntil = computed(() => props.booking.bookedAt.getTime() + paymentWindowMs.value)
+const settingsRef = useAppSettings()
+const bookingPaymentTimeMs = computed(() => settingsRef.value?.bookingPaymentTimeMs ?? 0)
 const nowMs = ref(Date.now())
-const remainingMs = computed(() => allowUntil.value - nowMs.value)
+const remainingMs = computed(() => props.booking.bookedAt.getTime() + bookingPaymentTimeMs.value - nowMs.value)
 
 const { start, stop } = useTick(() => {
   nowMs.value = Date.now()
@@ -65,7 +64,7 @@ const { start, stop } = useTick(() => {
   }
 }, { intervalMs: MS_IN_SECOND, immediate: true })
 
-watch([isUnpaid, paymentWindowMs], () => {
+watch([isUnpaid, bookingPaymentTimeMs], () => {
   if (isUnpaid.value && remainingMs.value > 0) {
     start()
   } else {

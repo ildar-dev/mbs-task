@@ -1,6 +1,6 @@
 import { IInterceptorResponse } from './model'
 
-import { useAuthStore } from '@/features/auth'
+import { useAuthStore } from '@/features/auth/models/store'
 import { router } from '@/router'
 import { goToLogin } from '@/shared/router/redirect'
 

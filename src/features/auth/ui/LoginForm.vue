@@ -19,7 +19,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useAuth, onLoginSuccess } from '@/features/auth'
+import { useRouter } from 'vue-router'
+import { useAuth } from '@/features/auth/composables/useAuth'
+import { onLoginSuccess } from '@/features/auth/business/onLoginSuccess'
 
 const username = ref('')
 const password = ref('')
@@ -27,13 +29,14 @@ const error = ref('')
 const submitting = ref(false)
 
 const { login } = useAuth()
+const router = useRouter()
 
 async function onSubmit() {
   error.value = ''
   submitting.value = true
   try {
     await login(username.value, password.value)
-    onLoginSuccess()
+    onLoginSuccess(router)
   } catch {
     error.value = 'Неверный логин или пароль. Проверьте введенные данные и попробуйте снова'
   } finally {

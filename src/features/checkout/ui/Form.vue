@@ -43,7 +43,7 @@ import { validateSeatsSelection } from '../business/validation'
 import { checkout } from '../business/checkout'
 import { formatTimeHHMM, formatDateMMDD } from '@/utils/time/formatter'
 
-import { useAuth } from '@/features/auth'
+import { useAuth } from '@/features/auth/composables/useAuth'
 
 
 const props = defineProps<{

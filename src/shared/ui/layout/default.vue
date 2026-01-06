@@ -22,20 +22,22 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useAuth, onLogout } from '@/features/auth'
+import { useRoute, useRouter } from 'vue-router'
+import { useAuth } from '@/features/auth/composables/useAuth'
+import { onLogout } from '@/features/auth/business/onLogout'
 import { pages } from './models/pages'
 
 const route = useRoute()
 const title = computed(() => pages.find(page => page.name === route.name)?.header ?? '')
 
 const { isAuthenticated } = useAuth()
+const router = useRouter()
 const visiblePages = computed(() =>
   pages.filter(p => p.isOnMenu && (!isAuthenticated.value || p.name !== 'login'))
 )
 
 function onLogoutClick() {
-  onLogout()
+  onLogout(router)
 }
 </script>
 <style scoped>
