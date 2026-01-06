@@ -1,11 +1,9 @@
-import type { IBooking } from '@/entities/booking/models/booking';
-import { EBookingStatus } from '@/entities/booking/models/booking';
+import { EBookingStatus, type IBooking } from '@/entities/booking/models/booking';
 
 import type { ISessionAggregate } from '@/entities/session/models/sessionAggregate'
 import type { ISessionDetails } from '@/entities/session/models/sessionDetails'
 
-import type { IGroupedBookings } from '../models/groupedBookings';
-import { EGroupedBookingType } from '../models/groupedBookings';
+import { EGroupedBookingType, type IGroupedBookings } from '../models/groupedBookings';
 
 export function getGroupedBookings(
   bookings: IBooking[],

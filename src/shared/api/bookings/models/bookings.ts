@@ -1,4 +1,4 @@
-import type { IDtoSeat } from '../../session/models';
+import type { IDtoSeat } from '@/shared/api/session/models';
 
 export interface IDtoBooking {
     id: string;
