@@ -11,19 +11,22 @@ export default defineConfig({
     },
   },
   build: {
-    // Исключаем тесты из сборки
     rollupOptions: {
       input: {
         main: fileURLToPath(new URL('./index.html', import.meta.url)),
       },
     },
-    // Явно исключаем тесты из сборки
-    exclude: ['**/__tests__/**', '**/*.test.ts', '**/*.spec.ts'],
   },
+  // @ts-expect-error - vitest types расширяют UserConfig
   test: {
     globals: true,
     environment: 'happy-dom',
-    exclude: ['**/node_modules/**', '**/dist/**'],
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/__tests__/fixtures/**',
+      '**/fixtures/**',
+    ],
     include: ['**/__tests__/**/*.{ts,tsx}', '**/*.{test,spec}.{ts,tsx}'],
   },
 })
