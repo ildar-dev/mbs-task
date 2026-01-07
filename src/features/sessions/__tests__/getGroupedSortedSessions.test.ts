@@ -5,14 +5,18 @@ import {
 } from '../business/getGroupedSortedSessions'
 import {
   baseSessions,
-  baseCinemasById,
-  baseMoviesById,
   fixturesWithIncompleteData,
   fixturesEmpty,
   createSession,
-  createCinema,
-  createMovie,
 } from '@/shared/__tests__/fixtures/sessions'
+import {
+  baseCinemasById,
+  createCinema,
+} from '@/shared/__tests__/fixtures/cinemas'
+import {
+  baseMoviesById,
+  createMovie,
+} from '@/shared/__tests__/fixtures/movies'
 import { startOfDayTs } from '../business/getGroupedSessions'
 
 describe('groupedSortedSessionsByDateCinema', () => {

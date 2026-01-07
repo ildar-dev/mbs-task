@@ -18,7 +18,7 @@ export function validateSeatsSelection(seats: ISeat[], theater: ITheater, booked
     seatSet.add(key);
   }
 
-  // 1-based: допустимый диапазон [1..rows], [1..seatsPerRow]
+  // [1..rows], [1..seatsPerRow]
   if (seats.some(seat => seat.rowNumber < 1 || seat.seatNumber < 1)) {
     throw new Error('Неверные места')
   }
