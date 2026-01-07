@@ -21,8 +21,6 @@ function compareMovieIdsByTitle(moviesById: TMovieDictionary) {
   }
 }
 
-// TODO добавить тест с разного рода сортировками сессий на входе и ожиданием правильного порядка в результате
-
 export function groupedSortedSessionsByDateCinema(
   sessions: ISession[],
   cinemasById: TCinemaDictionary,
